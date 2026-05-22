@@ -1,1 +1,2 @@
 # Thulir-AI
+HIIII VIBIIII
