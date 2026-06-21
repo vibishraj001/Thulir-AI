@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CineMatch is a smart movie recommendation engine. Take our quick interactive quiz, search by mood or genre, and save your favorites to your watchlist instantly.">
+  <meta name="keywords" content="movie recommendations, smart movie finder, movie quiz, what movie to watch, movie database, film recommendations, personalized watchlist">
+  <meta name="author" content="CineMatch Team">
+  <meta name="robots" content="index, follow">
+
+  <!-- OpenGraph Tags -->
+  <meta property="og:title" content="CineMatch | Smart Movie Recommendation & Custom Watchlist">
+  <meta property="og:description" content="Stuck on what to watch? Find the perfect movie in seconds using our interactive smart matching engine.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cinematch.app">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CineMatch | Smart Movie Recommendation">
+  <meta name="twitter:description" content="Get instant, smart movie matches based on your mood, preferred runtime, and era.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=80">
+
+  <title>CineMatch | Smart Movie Recommendation & Custom Watchlist</title>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- JSON-LD Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CineMatch",
+    "url": "https://cinematch.app",
+    "description": "Discover personalized movie recommendations with our smart interactive preference engine, search curated films, and build a custom watchlist.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://cinematch.app/#browse?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- --- HEADER / NAVIGATION --- -->
+  <header class="header" id="main-header">
+    <div class="container">
+      <a href="#" class="logo" id="logo-link">
+        <i class="fa-solid fa-circle-play logo-icon"></i>
+        <span>Cine<span style="color: var(--accent-secondary);">Match</span></span>
+      </a>
+      
+      <nav class="nav-container">
+        <ul class="nav-menu" id="nav-links">
+          <li><a href="#" class="nav-link active" id="link-hero">Home</a></li>
+          <li><a href="#finder" class="nav-link" id="link-finder">Smart Finder</a></li>
+          <li><a href="#browse" class="nav-link" id="link-browse">Browse Movies</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-secondary btn-icon watchlist-btn-nav" id="watchlist-toggle-btn" aria-label="Open Watchlist">
+          <i class="fa-solid fa-heart"></i>
+          <span class="watchlist-count" id="watchlist-badge">0</span>
+        </button>
+        <div id="user-profile-menu" class="user-profile-container">
+          <button class="btn btn-accent" id="signin-nav-btn">
+            <i class="fa-solid fa-user"></i> <span>Sign In</span>
+          </button>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- --- HERO SECTION --- -->
+    <section class="hero" id="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-tagline">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Next-Gen Personalized Discovery</span>
+            </div>
+            <h1 class="hero-title text-gradient">Stop Scrolling.<br>Start Watching.</h1>
+            <p class="hero-desc">
+              Tired of endlessly browsing streaming platforms? CineMatch evaluates your mood, preferred genre, pace, and era in real-time to find the exact films you will love.
+            </p>
+            <div class="hero-buttons">
+              <a href="#finder" class="btn btn-primary" id="hero-cta-quiz">
+                <i class="fa-solid fa-compass"></i> Try Smart Finder
+              </a>
+              <button class="btn btn-secondary" id="surprise-me-btn">
+                <i class="fa-solid fa-shuffle"></i> Surprise Me!
+              </button>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h4 id="stat-movies-count">30+</h4>
+                <p>Curated Classics</p>
+              </div>
+              <div class="stat-item">
+                <h4>98%</h4>
+                <p>Accuracy Score</p>
+              </div>
+              <div class="stat-item">
+                <h4>1-Sec</h4>
+                <p>Instant Matches</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-glow-sphere"></div>
+            <div class="hero-card">
+              <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80" alt="Cinematic camera setup representation" loading="eager">
+              <div class="hero-card-overlay">
+                <span class="hero-card-tag">Featured Pick</span>
+                <h3 class="hero-card-title">Interstellar</h3>
+                <div class="hero-card-rating">
+                  <i class="fa-solid fa-star"></i>
+                  <span>8.7 / 10</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- INTERACTIVE SMART FINDER (QUIZ) --- -->
+    <section class="quiz-section section-padding" id="finder">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">AI-Guided Engine</span>
+          <h2 class="section-title">Smart Finder</h2>
+          <p>Answer 4 quick preferences to calculate your absolute perfect movie matchups.</p>
+        </div>
+
+        <div class="quiz-box glass" id="quiz-container">
+          <!-- Step Indicators -->
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress-line"></div>
+            <div class="progress-step active" data-step="1">1</div>
+            <div class="progress-step" data-step="2">2</div>
+            <div class="progress-step" data-step="3">3</div>
+            <div class="progress-step" data-step="4">4</div>
+          </div>
+
+          <!-- Step 1: Mood -->
+          <div class="quiz-step active" data-step="1">
+            <h3 class="quiz-question">1. What's your current vibe?</h3>
+            <div class="options-grid">
+              <div class="option-card" data-key="mood" data-value="thrill">
+                <i class="fa-solid fa-bolt option-icon"></i>
+                <span class="option-title">Exhilarating</span>
+                <span class="option-desc">Fast-paced, suspenseful, edge-of-seat</span>
+              </div>
+              <div class="option-card" data-key="mood" data-value="think">
+                <i class="fa-solid fa-brain option-icon"></i>
+                <span class="option-title">Mind-Bending</span>
+                <span class="option-desc">Intelligent, philosophical, deep plots</span>
+              </div>
+              <div class="option-card" data-key="mood" data-value="emotional">
+                <i class="fa-solid fa-heart option-icon"></i>
+                <span class="option-title">Emotional</span>
+                <span class="option-desc">Touching stories, powerful journeys</span>
+              </div>
+              <div class="option-card" data-key="mood" data-value="fun">
+                <i class="fa-solid fa-face-smile option-icon"></i>
+                <span class="option-title">Lighthearted</span>
+                <span class="option-desc">Humor, fun adventures, relaxing</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Main Focus -->
+          <div class="quiz-step" data-step="2">
+            <h3 class="quiz-question">2. Which genre style fits best?</h3>
+            <div class="options-grid">
+              <div class="option-card" data-key="genre" data-value="sci-fi">
+                <i class="fa-solid fa-user-astronaut option-icon"></i>
+                <span class="option-title">Sci-Fi & Fantasy</span>
+                <span class="option-desc">Alternative realities, space, magic</span>
+              </div>
+              <div class="option-card" data-key="genre" data-value="drama">
+                <i class="fa-solid fa-masks-theater option-icon"></i>
+                <span class="option-title">Drama & Human</span>
+                <span class="option-desc">Character struggles, relationships</span>
+              </div>
+              <div class="option-card" data-key="genre" data-value="action">
+                <i class="fa-solid fa-burst option-icon"></i>
+                <span class="option-title">Action & Crime</span>
+                <span class="option-desc">Fights, chases, heist capers</span>
+              </div>
+              <div class="option-card" data-key="genre" data-value="comedy">
+                <i class="fa-solid fa-wand-magic option-icon"></i>
+                <span class="option-title">Comedy & Adventure</span>
+                <span class="option-desc">Laughs, journeys, light themes</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Run time / Pace -->
+          <div class="quiz-step" data-step="3">
+            <h3 class="quiz-question">3. How much time do you have?</h3>
+            <div class="options-grid">
+              <div class="option-card" data-key="runtime" data-value="short">
+                <i class="fa-solid fa-hourglass-start option-icon"></i>
+                <span class="option-title">Quick Watch</span>
+                <span class="option-desc">Under 100 minutes, snappy pacing</span>
+              </div>
+              <div class="option-card" data-key="runtime" data-value="medium">
+                <i class="fa-solid fa-hourglass-half option-icon"></i>
+                <span class="option-title">Standard Feature</span>
+                <span class="option-desc">100 - 135 minutes, balanced pacing</span>
+              </div>
+              <div class="option-card" data-key="runtime" data-value="long">
+                <i class="fa-solid fa-hourglass-end option-icon"></i>
+                <span class="option-title">Epic Journey</span>
+                <span class="option-desc">Over 135 minutes, deep worldbuilding</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Era -->
+          <div class="quiz-step" data-step="4">
+            <h3 class="quiz-question">4. Which release era appeals today?</h3>
+            <div class="options-grid">
+              <div class="option-card" data-key="era" data-value="modern">
+                <i class="fa-solid fa-mobile-screen option-icon"></i>
+                <span class="option-title">Modern Cinema</span>
+                <span class="option-desc">Released after 2015, ultra high definition</span>
+              </div>
+              <div class="option-card" data-key="era" data-value="millennial">
+                <i class="fa-solid fa-compact-disc option-icon"></i>
+                <span class="option-title">The 2000s Era</span>
+                <span class="option-desc">Released between 2000 and 2015</span>
+              </div>
+              <div class="option-card" data-key="era" data-value="classic">
+                <i class="fa-solid fa-ticket option-icon"></i>
+                <span class="option-title">Vintage Classics</span>
+                <span class="option-desc">Released before 2000, legendary tales</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quiz Navigation -->
+          <div class="quiz-navigation">
+            <button class="btn btn-secondary" id="quiz-btn-prev" disabled>
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <span id="quiz-step-info" style="color: var(--text-muted); font-size: 0.9rem;">Step 1 of 4</span>
+            <button class="btn btn-primary" id="quiz-btn-next">
+              Next <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiz Results Panel (Dynamically populated) -->
+        <div class="results-container" id="quiz-results" style="display: none; margin-top: 60px;">
+          <div class="results-header">
+            <h3 class="section-title text-gradient">Your Top Matches</h3>
+            <p>Our algorithm mapped your profile against our movie catalog. Here are your highest-scoring recommendations:</p>
+          </div>
+          <div class="results-grid" id="recommendations-grid">
+            <!-- Dynamically populated via JS -->
+          </div>
+          <div style="text-align: center; margin-top: 20px;">
+            <button class="btn btn-secondary" id="quiz-reset-btn">
+              <i class="fa-solid fa-rotate-left"></i> Retake Finder Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- MOVIE CATALOG / BROWSE SECTION --- -->
+    <section class="browse-section section-padding" id="browse">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Full Library</span>
+          <h2 class="section-title">Browse Curated Movies</h2>
+          <p>Search, filter, and sort our collection of acclaimed international masterpieces.</p>
+        </div>
+
+        <div class="filter-bar">
+          <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="search-input" id="search-input" placeholder="Search by title, genre, director, or cast...">
+          </div>
+          
+          <div class="filter-controls">
+            <div class="genre-tags" id="genre-filters">
+              <button class="genre-tag active" data-genre="all">All Genres</button>
+              <button class="genre-tag" data-genre="Sci-Fi">Sci-Fi</button>
+              <button class="genre-tag" data-genre="Drama">Drama</button>
+              <button class="genre-tag" data-genre="Action">Action</button>
+              <button class="genre-tag" data-genre="Adventure">Adventure</button>
+              <button class="genre-tag" data-genre="Thriller">Thriller</button>
+              <button class="genre-tag" data-genre="Crime">Crime</button>
+              <button class="genre-tag" data-genre="Comedy">Comedy</button>
+              <button class="genre-tag" data-genre="Mystery">Mystery</button>
+            </div>
+            
+            <div class="sort-select-wrapper">
+              <label for="sort-select" style="color: var(--text-muted);">Sort By:</label>
+              <select class="sort-select" id="sort-select">
+                <option value="rating">Rating: High to Low</option>
+                <option value="year-desc">Year: Newest First</option>
+                <option value="year-asc">Year: Oldest First</option>
+                <option value="title">Alphabetical (A-Z)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movie Catalog Grid -->
+        <div class="movie-grid" id="catalog-grid">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- --- WATCHLIST SIDE DRAWER --- -->
+  <aside class="watchlist-drawer" id="watchlist-drawer" aria-label="My Watchlist">
+    <div class="drawer-header">
+      <h3 class="drawer-title">
+        <i class="fa-solid fa-heart"></i> My Watchlist
+      </h3>
+      <button class="drawer-close-btn" id="watchlist-close-btn" aria-label="Close Watchlist">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    
+    <div class="watchlist-items" id="watchlist-items-container">
+      <!-- Dynamically populated via JS -->
+    </div>
+  </aside>
+  <div class="watchlist-overlay" id="watchlist-overlay"></div>
+
+  <!-- --- DETAILS MODAL --- -->
+  <div class="modal-overlay" id="details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-movie-title">
+    <div class="modal-wrapper">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="modal-grid">
+        <div class="modal-visual-side">
+          <img class="modal-poster" id="modal-movie-poster" src="" alt="Movie poster representation">
+          <div class="modal-poster-overlay"></div>
+        </div>
+        
+        <div class="modal-info-side">
+          <div class="modal-title-wrapper">
+            <div class="modal-meta-row">
+              <span class="modal-meta-item" id="modal-movie-rating">
+                <i class="fa-solid fa-star"></i> <span>8.5</span>
+              </span>
+              <span class="modal-meta-item" id="modal-movie-year">2020</span>
+              <span class="modal-meta-item" id="modal-movie-runtime">148 mins</span>
+            </div>
+            <h2 class="modal-movie-title" id="modal-movie-title">Inception</h2>
+            <div class="modal-genre-tags" id="modal-movie-genres">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="modal-section-title">Plot Synopsis</h4>
+            <p class="modal-plot" id="modal-movie-plot">Plot details will display here.</p>
+          </div>
+          
+          <div class="modal-people">
+            <div>
+              <h5 class="person-role">Director</h5>
+              <p class="person-name" id="modal-movie-director">Christopher Nolan</p>
+            </div>
+            <div>
+              <h5 class="person-role">Starring</h5>
+              <p class="person-name" id="modal-movie-cast">Leonardo DiCaprio, Joseph Gordon-Levitt</p>
+            </div>
+          </div>
+          
+          <!-- Trailer Section -->
+          <div class="trailer-section">
+            <h4 class="modal-section-title">Teaser Trailer</h4>
+            <div class="trailer-player">
+              <div class="trailer-screen" id="trailer-screen">
+                <div class="trailer-static-canvas"></div>
+                <!-- Simulated audio visualizer EQ bars while trailer is playing -->
+                <div class="trailer-visual-eq" id="trailer-eq">
+                  <div class="eq-bar"></div>
+                  <div class="eq-bar"></div>
+                  <div class="eq-bar"></div>
+                  <div class="eq-bar"></div>
+                  <div class="eq-bar"></div>
+                </div>
+                
+                <button class="trailer-big-play-btn" id="trailer-big-play" aria-label="Play Trailer">
+                  <i class="fa-solid fa-play"></i>
+                </button>
+                
+                <div class="trailer-overlay-ui">
+                  <div class="trailer-status-tag" id="trailer-status">
+                    <span></span>Ready
+                  </div>
+                  
+                  <div class="trailer-controls">
+                    <div class="trailer-controls-left">
+                      <button class="trailer-play-btn" id="trailer-play-toggle" aria-label="Play/Pause Trailer">
+                        <i class="fa-solid fa-play"></i>
+                      </button>
+                      <button class="trailer-mute-btn" id="trailer-mute-toggle" aria-label="Toggle Sound">
+                        <i class="fa-solid fa-volume-high"></i>
+                      </button>
+                    </div>
+                    
+                    <div class="trailer-progress-container" id="trailer-progress-wrapper">
+                      <div class="trailer-progress-bar" id="trailer-progress-fill"></div>
+                    </div>
+                    
+                    <span class="trailer-time" id="trailer-time-display">00:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Actions -->
+          <div class="modal-action-row">
+            <button class="btn btn-primary" id="modal-watchlist-btn">
+              <i class="fa-solid fa-plus"></i> Add to Watchlist
+            </button>
+            <button class="btn btn-secondary" id="modal-watch-now">
+              <i class="fa-solid fa-play"></i> Watch Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- TOAST NOTIFICATIONS --- -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- --- FOOTER --- -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <i class="fa-solid fa-circle-play logo-icon"></i>
+            <span>Cine<span style="color: var(--accent-secondary);">Match</span></span>
+          </a>
+          <p>CineMatch delivers tailored movie picks using client-side preference mapping. Say goodbye to the scroll, and hello to cinematic perfection.</p>
+          <div class="footer-socials">
+            <a href="https://twitter.com" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://instagram.com" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://github.com" class="social-icon" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Features</h4>
+          <ul class="footer-links">
+            <li><a href="#finder" class="footer-link">Smart Finder</a></li>
+            <li><a href="#browse" class="footer-link">Browse Library</a></li>
+            <li><a href="#" class="footer-link" id="footer-surprise-link">Surprise Me</a></li>
+            <li><a href="#" class="footer-link" id="footer-watchlist-link">My Watchlist</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Browse Genres</h4>
+          <ul class="footer-links">
+            <li><a href="#browse" class="footer-link footer-genre-quick" data-genre="Sci-Fi">Science Fiction</a></li>
+            <li><a href="#browse" class="footer-link footer-genre-quick" data-genre="Drama">Drama</a></li>
+            <li><a href="#browse" class="footer-link footer-genre-quick" data-genre="Action">Action & Thriller</a></li>
+            <li><a href="#browse" class="footer-link footer-genre-quick" data-genre="Comedy">Comedy & Adventure</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-newsletter">
+          <h4 class="footer-title">Stay Updated</h4>
+          <p>Get notified when we add rare movies, curation updates, and new recommendation metrics.</p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Enter your email" required aria-label="Newsletter email input">
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 CineMatch. All rights reserved. Created with passion for film enthusiasts.</p>
+        <div class="footer-bottom-links">
+          <a href="#" class="footer-bottom-link">Privacy Policy</a>
+          <a href="#" class="footer-bottom-link">Terms of Service</a>
+          <a href="#" class="footer-bottom-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- --- LOGIN / REGISTER MODAL --- -->
+  <div class="modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+    <div class="modal-wrapper auth-wrapper">
+      <button class="modal-close-btn" id="auth-close-btn" aria-label="Close Authentication">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      
+      <div class="auth-box">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login" data-target="form-login">Sign In</button>
+          <button class="auth-tab" id="tab-register" data-target="form-register">Create Account</button>
+        </div>
+        
+        <!-- Login Form -->
+        <form class="auth-form active" id="form-login">
+          <h3 class="auth-title" id="auth-modal-title">Welcome Back</h3>
+          <p class="auth-subtitle">Sign in to sync your watchlist and get personalized picks.</p>
+          
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-envelope input-icon"></i>
+              <input type="email" id="login-email" class="form-input" placeholder="name@domain.com" required autocomplete="email">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="login-password" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+              <button type="button" class="password-toggle" aria-label="Toggle Password Visibility">
+                <i class="fa-solid fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="auth-actions-row">
+            <label class="remember-me">
+              <input type="checkbox" id="login-remember">
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+        </form>
+        
+        <!-- Register Form -->
+        <form class="auth-form" id="form-register">
+          <h3 class="auth-title">Join CineMatch</h3>
+          <p class="auth-subtitle">Start organizing your movie journeys today.</p>
+          
+          <div class="form-group">
+            <label for="register-name">Full Name</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-user input-icon"></i>
+              <input type="text" id="register-name" class="form-input" placeholder="John Doe" required autocomplete="name">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="register-email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-envelope input-icon"></i>
+              <input type="email" id="register-email" class="form-input" placeholder="name@domain.com" required autocomplete="email">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="register-password" class="form-input" placeholder="Minimum 6 characters" minlength="6" required autocomplete="new-password">
+              <button type="button" class="password-toggle" aria-label="Toggle Password Visibility">
+                <i class="fa-solid fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+          
+          <label class="terms-agree">
+            <input type="checkbox" required>
+            <span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a></span>
+          </label>
+          
+          <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- JAVASCRIPT CONTROLLER --- -->
+  <script src="app.js"></script>
+</body>
+</html>
